@@ -15,20 +15,20 @@
 - Mobile games, apps, and smart phone targeted content
 
 
-# Values that most fingerprinting companies forget to spoof ----
+# Values that most fingerprinting companies forget to spoof 
 
-## Screen values that most companies forget to spoof ----
+## Screen values that most companies forget to spoof 
 
 screen.deviceXDPI, screen.deviceYDPI, screen.logicalYDPI, screen.fontSmoothingEnabled, screen.bufferDepth, document.documentElement.clientWidth, document.body.clientWidth, window.outerHeight, SomeRandomCreatedElement.offsetWidth, document.body.scrollLeft 
 
-## Browser Language Values ---
+## Browser Language Values 
 
 navigator.systemLanguage
 navigator.browserLanguage
 navigator.userLanguage.
 
 
-## Date object Values ---
+## Date object Values 
 
 Most fingerprinting websites have checks for new Date(), Intl.DateTimeFormat(), new Date().toLocaleString(), new Date().toLocaleFormat() but there are plenty of methods being used to check for the real date and time even if those properties are spoofed, which has been observed to include:
 
@@ -50,21 +50,23 @@ Font fingerprint spoofing can be fooled by something in the industry people call
 
 
 
-# Script Detected on Mastercard ---
+# Script Detected on Mastercard 
 
 Unique way to detect if you are using a proxy by tricking your browser, used by MasterCard
-Appears to purposely try to load a non-existent fake url to an image via a random port over Ajax with the ability to determine if the browser is a proxy or real IP based on measuring the ping time for loading this fake image.var url = document.location.protocol+”//”+ ip + “:” + getRandomPort() + ‘/NonExistentImage’ + getRandomPort() + ‘.gif’;
+Appears to purposely try to load a non-existent fake url to an image via a random port over Ajax with the ability to determine if the browser is a proxy or real IP based on measuring the ping time for loading this fake image.
+
+` var url = document.location.protocol+”//”+ ip + “:” + getRandomPort() + ‘/NonExistentImage’ + getRandomPort() + ‘.gif’;
 ProxyCollector.doAjaxViaImage(returnFunction, url);
 request = new window.XDomainRequest();
 _timer = new Timer();
 request.open(“GET”, url, true);
 request.send();
 ProxyCollector.doAjaxViaImage(returnFunction, url);
-ProxyCollector.doAjax(ProxyCollector.externalIP, ProxyCollector.setExternalPingTime);
+ProxyCollector.doAjax(ProxyCollector.externalIP, ProxyCollector.setExternalPingTime); `
 
 
 
-# Some Helpful Links and Notes --- 
+# Some Helpful Links and Notes  
 
 
 1. https://stackoverflow.com/questions/24963729/find-javascript-that-is-changing-dom-element
