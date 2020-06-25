@@ -1,0 +1,18 @@
+Fingerprint Type,Detected,Functions used in this script to fingerprint
+Web Audio API,Yes,"AudioContext, webkitAudioContext, sampleRate, maxChannelCount, channelCount, channelCountMode, channelInterpretation"
+Network,Yes,"network:{address:{}, n.candidate.ip, d.compactIPv6, host, webRTC IP, O.webTraffic=e.webTraffic, O.FP.routerFingerprint?&ip=, e(e){“0.0.0.0″!==e&&u.indexOf(e), host===n[7]”"
+Browser Useragent,Yes,"userAgent:E, spoofed:n.spoofDetect, productSub, e.platform.toLowerCase, systemLanguage, F.languages.slice().sort(), language, userLanguage, shadingLanguageVersion, and appears to find values of everything that hasOwnProperty or propertyIsEnumerable."
+Screen Recording,No,So far it doesn’t appear to record the screen.
+XML Http Request,Yes,"XDomainRequest, POST, O.responseTime.server, O.responseTime.roundTrip, O.MEM.ie, O.client.callback, xhr.ontimeout"
+WebRTC,Yes,"RTCIceGatherer, n.mediaDevices, webkitRTCPeerConnection, RTCPeerConnection, createDataChannel, iceGatheringState, audiooutput:”speakersInstalled”,audioinput:”microphonesInstalled”, videoinput:”webcamsInstalled”, i.compactIPv6"
+CPU and Memory,Yes,"a,processors:F.hardwareConcurrency,"
+Battery,Yes,"getBattery, O.FP.os.batteryLevel=e.level,"
+Plugins,Yes,"{plugins:O.client.plugins}, this.plugins, F.javaEnabled, videoCardDriver:u[1], e.mediaDevices"
+,,
+Exact Time,Yes,"y.getUTCDate, y.getUTCMilliseconds, y.getUTCSeconds, l=s.getUTCMonth, “-271821-04-20T00:00:00.000Z”, O.responseTime.roundTrip=Date.now, getTimezoneOffset, getTime(), responseTime, setTimeout, clearTimeout, responseTime.server, getResponseHeader(“X-Response-Time”), consoleLogTime, n.wireTime, dataAvailableIn,"
+Permanent Storage,Yes,"e.fileSystem, e.indexedDB, o.localStorage, o.sessionStorage, O.MEM.cds, O.MEM.cdsfin, Object.keys, O.cake.crossDomainStorage, o.requestFileSystem, webkitRequestFileSystem, createWriter, TEMPORARYm t.root.getFile, objectStore, {keyPath:”key”}, __augurCache, (g.storage||”/_.htm”)"
+Plugins,Yes,"{plugins:O.client.plugins}, this.plugins, F.javaEnabled, videoCardDriver:u[1]"
+WebGL,Yes,"WEBGL_debug_renderer_info, UNMASKED_VENDOR_WEBGL, experimental-webgl, shadingLanguageVersion, greenBits, alphaBits, maxRenderBufferSize, maxCombinedTextureImageUnits, maxFragmentUniformVectors, aliasedPointSizeRange, vertexShaderBestPrecision, h.RENDERER, “highp”:”lowp”, EXT_texture_filter_anisotropic, t.HIGH_FLOAT"
+Screen,Yes,"deviceXDPI, deviceXDPI, availWidth, r.availHeight, screenDensity, colorDepth, touchScreenSupport, msMaxTouchPoints, TouchEvent, ontouchstart, width, height, devicePixelRatio"
+Fonts,Yes,"Very unique specific list of fonts to detect, creating span with style.fontFamily and measuring offsetWidth, offsetHeight, i.style.position. However, no glyph measurement was detected so far."
+Unique Exploits,Yes,"It uses the number of webcams, microphones, and speakers installed as part of the fingerprint; it might also extract e-mail addresses or facebook data from the website."
