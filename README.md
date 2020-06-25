@@ -2,17 +2,17 @@
 
 # List of websites or types of websites that tend towards doing fingerprinting 
 
-a.Ecommerce for online shopping and services
-b.Ad-powered free services like search and e-mail
-c.Advertisers and big personal data sellers
-d.Operating systems including extreme levels of tracking built-in to Windows 10,
-e.News content from online newspapers and blogs
-f.Entertainment, gossip, videos, and stories
-g.Services such as restaurant delivery and groceries
-h.Hospitality and travel including hotel websites, travel agencies, and airlines
-i.Social networks, especially the most popular (Facebook, Instagram, Twitter)
-j.Internet Services including web hosting, build your own websites, and shopping cart software
-k.Mobile games, apps, and smart phone targeted content
+- Ecommerce for online shopping and services
+- Ad-powered free services like search and e-mail
+- Advertisers and big personal data sellers
+- Operating systems including extreme levels of tracking built-in to Windows 10,
+- News content from online newspapers and blogs
+- Entertainment, gossip, videos, and stories
+- Services such as restaurant delivery and groceries
+- Hospitality and travel including hotel websites, travel agencies, and airlines
+- Social networks, especially the most popular (Facebook, Instagram, Twitter)
+- Internet Services including web hosting, build your own websites, and shopping cart software
+- Mobile games, apps, and smart phone targeted content
 
 
 # Values that most fingerprinting companies forget to spoof ----
