@@ -17,16 +17,18 @@
 
 # Values that most fingerprinting companies forget to spoof ----
 
-Screen values that most companies forget to spoof ----
+## Screen values that most companies forget to spoof ----
 
 screen.deviceXDPI, screen.deviceYDPI, screen.logicalYDPI, screen.fontSmoothingEnabled, screen.bufferDepth, document.documentElement.clientWidth, document.body.clientWidth, window.outerHeight, SomeRandomCreatedElement.offsetWidth, document.body.scrollLeft 
 
-Browser Language Values ---
+## Browser Language Values ---
 
 navigator.systemLanguage
 navigator.browserLanguage
 navigator.userLanguage.
 
+
+## Date object Values ---
 
 Most fingerprinting websites have checks for new Date(), Intl.DateTimeFormat(), new Date().toLocaleString(), new Date().toLocaleFormat() but there are plenty of methods being used to check for the real date and time even if those properties are spoofed, which has been observed to include:
 
