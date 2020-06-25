@@ -14,42 +14,6 @@
 - Internet Services including web hosting, build your own websites, and shopping cart software
 - Mobile games, apps, and smart phone targeted content
 
-
-# Values that most fingerprinting companies forget to spoof 
-
-## Screen values that most companies forget to spoof 
-
-screen.deviceXDPI, screen.deviceYDPI, screen.logicalYDPI, screen.fontSmoothingEnabled, screen.bufferDepth, document.documentElement.clientWidth, document.body.clientWidth, window.outerHeight, SomeRandomCreatedElement.offsetWidth, document.body.scrollLeft 
-
-## Browser Language Values 
-
-navigator.systemLanguage
-navigator.browserLanguage
-navigator.userLanguage.
-
-
-## Date object Values 
-
-Most fingerprinting websites have checks for new Date(), Intl.DateTimeFormat(), new Date().toLocaleString(), new Date().toLocaleFormat() but there are plenty of methods being used to check for the real date and time even if those properties are spoofed, which has been observed to include:
-
-
-getTimezoneOffset, jan.getTimezoneOffset(this.getFullYear(), 0, 1);
-Date.prototype.toNDJSON,
-this.getUTCFullYear, this.getUTCMonth, this.getUTCDate, this.getUTCHours, this.getUTCMinutes, this.getUTCSeconds, this.getFullYear
-((new Date).getTime,
-Date.now,
-Math.random().toString(36).substr(2,16)+a.getTime().toString(36)}
-b-A.time,
-pos:G,time:h, gmtHours–;timestamp instanceof Date
-f(“time-local”,a.toLocaleString(), time-tz-dst-active, time-tz-fixed-locale-string, time-tz-has-dst
-
-
-# Details on Glyph Fingerprinting
-
-Font fingerprint spoofing can be fooled by something in the industry people call "Glyph fingerprinting" which is harder to protect against, font white lists are also used.
-
-
-
 # Script Detected on Mastercard 
 
 Unique way to detect if you are using a proxy by tricking your browser, used by MasterCard
@@ -63,6 +27,40 @@ request.open(“GET”, url, true);
 request.send();
 ProxyCollector.doAjaxViaImage(returnFunction, url);
 ProxyCollector.doAjax(ProxyCollector.externalIP, ProxyCollector.setExternalPingTime); `
+
+
+# Values that most fingerprinting companies forget to spoof 
+
+## Screen values that most companies forget to spoof 
+
+`screen.deviceXDPI, screen.deviceYDPI, screen.logicalYDPI, screen.fontSmoothingEnabled, screen.bufferDepth, document.documentElement.clientWidth, document.body.clientWidth, window.outerHeight, SomeRandomCreatedElement.offsetWidth, document.body.scrollLeft `
+
+## Browser Language Values 
+
+` navigator.systemLanguage
+navigator.browserLanguage
+navigator.userLanguage `
+
+
+## Date object Values 
+
+Most fingerprinting websites have checks for new Date(), Intl.DateTimeFormat(), new Date().toLocaleString(), new Date().toLocaleFormat() but there are plenty of methods being used to check for the real date and time even if those properties are spoofed, which has been observed to include:
+
+
+` getTimezoneOffset, jan.getTimezoneOffset(this.getFullYear(), 0, 1);
+Date.prototype.toNDJSON,
+this.getUTCFullYear, this.getUTCMonth, this.getUTCDate, this.getUTCHours, this.getUTCMinutes, this.getUTCSeconds, this.getFullYear
+((new Date).getTime,
+Date.now,
+Math.random().toString(36).substr(2,16)+a.getTime().toString(36)}
+b-A.time,
+pos:G,time:h, gmtHours–;timestamp instanceof Date
+f(“time-local”,a.toLocaleString(), time-tz-dst-active, time-tz-fixed-locale-string, time-tz-has-dst `
+
+
+# Details on Glyph Fingerprinting
+
+Font fingerprint spoofing can be fooled by something in the industry people call "Glyph fingerprinting" which is harder to protect against, font white lists are also used.
 
 
 
