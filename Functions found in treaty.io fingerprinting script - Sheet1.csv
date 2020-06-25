@@ -1,0 +1,14 @@
+Fingerprint Type,Detected,Functions used in this script to fingerprint
+Web Audio API,Yes,"offerToReceiveAudio, writeRtpMap, numChannels, clockRate, codecs, rtcp, headerExtensions, writeSessionBoilerplate, writeMediaSection, rtpReceiver, ssrc, sendEncodingParameters"
+Network,Yes,"port, type, raddr, relatedPort, tcpType, webRTC IP"
+Browser Useragent,Yes,"WebAPIs.NavigatorID.userAgent, WebAPIs.headers.User-Agent, product, productSub, appCodeName, appVersion, privateBrowsing, userLanguage, Date and time, and many still unknown properties. (0x32c, 0x32b, etc.)"
+Screen Recording,Yes,"devicemotion, visibilitychange, webkitvisibilitychange, and addEventLisener and handleEvent for: click, mouseup, keydown, keyup, PointerEvent, load, resize, accelerometer"
+XML Http Request,Yes,"Send, Open"
+WebRTC,Yes,"googIPv6, RTCPeerConnection, rtcpFeedback, parseRtcpFb, parseRtcpParametersm, shimRTCIceServerUrls, RTCRtpSender, RTCIceServer.url, RTCIceCandidate, RTCSessionDescription, rtcpMuxPolicy, RTCRtpReceiver, RTCIceGatherer, matchMedia, address"
+CPU and Memory,Yes,hardwareConcurrency
+Permanent Storage,Yes,"indexedDB, localStorage, getItem, data, lastIndexOf, testKey, sessionStorage, etag, TEMPORARY"
+Plugins,Yes,"mimeTypes, mediaDevices, isBlockingAds"
+WebGL,Yes,"WEBGL_debug_renderer_info, unmaskedRenderer, FRAGMENT_SHADER"
+Screen,Yes,"resize, screen, height, innerHeight, colorDepth, touch, visibilitychange, body, length"
+Fonts,No,"Not sure, still researching. Not detected so far."
+Unique Exploits,Yes,"Cell phone carrier leaking via Facebook app leak, identifying and linking users by stealing existing google analytics userid and history."
