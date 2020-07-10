@@ -68,9 +68,18 @@ var inject = function () {
     rangeMax: 127, 
     precision: 23 };
 
+  
 
-  var FloatIntPrecisionValues = {};
+  //"HIGH_FLOAT"
+  //"HIGH_INT"
+  var FloatIntPrecisionValues = {
+    rangeMin: 121, 
+    rangeMax: 121, 
+    precision: 6
+  };
 
+
+  var WebGLSupportedExtensionsSpoofed =["ANGLE_instanced_arrays", "EXT_blend_minmax"];
   
   var config = {
 
@@ -106,19 +115,28 @@ var inject = function () {
         
         "buffer": function (target) {
           
-
-          const bufferData = target.prototype.bufferData;
-          
+          const bufferData = target.prototype.bufferData;       
           Object.defineProperty(target.prototype, "bufferData", {
             
             "value": function () {
-
               console.log("Here we are applying webgl fingerprint --- IMAGE HASH");
-
               return bufferData.apply(this, arguments);
             }
 
           });
+        },
+
+        "getSupportedExtensions": function(target) {
+
+           const getSupportedExtensions = target.prototype.getSupportedExtensions;
+
+           Object.defineProperty(target.prototype, "getSupportedExtensions", {
+              "value": function() {
+                return WebGLSupportedExtensionsSpoofed;
+                //return getSupportedExtensions.apply(this, arguments);
+              }
+           });
+        
         },
 
         /*"shaderPrecisionFormat" : function(target) {
@@ -146,13 +164,15 @@ var inject = function () {
 
               //console.log(arguments[0] + " " + arguments[1] + ' tfw getShaderPrecisionFormat ');
 
-              //console.log(getShaderPrecisionFormat.call(this, arguments));
-               
-              //return getShaderPrecisionFormat.apply(this, arguments);
 
+              // 36338: "HIGH_FLOAT"
+              // 36341: "HIGH_INT"
+              // 36337: "MEDIUM_FLOAT"
 
+              if ( (arguments[1] === 36338 ) ||( arguments[1] === 36341) ){
+                return FloatIntPrecisionValues;
+              } else 
               return ShaderPrecisionSpoofedValues;
-
             }
 
           });
@@ -167,11 +187,9 @@ var inject = function () {
             
             "value": function () {
 
-              if ( WebGLSpoofedValues[arguments [0]] != undefined ){
-                
+              if ( WebGLSpoofedValues[arguments [0]] != undefined ){          
                   console.log(WebGLSpoofedValues[arguments[0]]);
                   return WebGLSpoofedValues[arguments[0]];
-
               }
  
               return getParameter.apply(this, arguments);
@@ -205,7 +223,10 @@ var inject = function () {
   config.spoof.webgl.parameter(WebGL2RenderingContext);
   
 
-
+  //SPOOFING WEBGL EXTENSIONS
+  config.spoof.webgl.getSupportedExtensions(WebGLRenderingContext);
+  config.spoof.webgl.getSupportedExtensions(WebGL2RenderingContext);
+  
 
   document.documentElement.dataset.wgscriptallow = true;
 
