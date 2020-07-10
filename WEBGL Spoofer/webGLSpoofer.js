@@ -110,14 +110,10 @@ var inject = function () {
       }
     },
     "spoof": {
-
-      "webgl": {
-        
-        "buffer": function (target) {
-          
+      "webgl": {       
+        "buffer": function (target) {        
           const bufferData = target.prototype.bufferData;       
-          Object.defineProperty(target.prototype, "bufferData", {
-            
+          Object.defineProperty(target.prototype, "bufferData", {            
             "value": function () {
               console.log("Here we are applying webgl fingerprint --- IMAGE HASH");
               return bufferData.apply(this, arguments);
@@ -127,9 +123,7 @@ var inject = function () {
         },
 
         "getSupportedExtensions": function(target) {
-
            const getSupportedExtensions = target.prototype.getSupportedExtensions;
-
            Object.defineProperty(target.prototype, "getSupportedExtensions", {
               "value": function() {
                 return WebGLSupportedExtensionsSpoofed;
@@ -156,7 +150,6 @@ var inject = function () {
         },*/
 
         "getShaderPrecisionFormat" : function (target) {
-
           const getShaderPrecisionFormat = target.prototype;
           Object.defineProperty(target.prototype, "getShaderPrecisionFormat", {
 
@@ -179,10 +172,8 @@ var inject = function () {
 
         },
 
-        "parameter": function (target) {
-          
+        "parameter": function (target) {          
           const getParameter = target.prototype.getParameter;
-
           Object.defineProperty(target.prototype, "getParameter", {
             
             "value": function () {
