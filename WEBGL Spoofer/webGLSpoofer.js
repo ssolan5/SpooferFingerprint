@@ -47,8 +47,29 @@ var inject = function () {
     "3379"  : "MREH", //MAX_TEXTURE_SIZE
     "2928"  : "MREH"  //DEPTH_RANGE
 
+    /*  FRAMEBUFFER: 36160
+        FRAMEBUFFER_ATTACHMENT_OBJECT_NAME: 36049
+        FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE: 36048
+        FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE: 36051
+        FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL: 36050
+        FRAMEBUFFER_BINDING: 36006
+        FRAMEBUFFER_COMPLETE: 36053
+        FRAMEBUFFER_INCOMPLETE_ATTACHMENT: 36054
+        FRAMEBUFFER_INCOMPLETE_DIMENSIONS: 36057
+        FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: 36055
+        FRAMEBUFFER_UNSUPPORTED: 36061
+    */
+
 
   };
+
+  var ShaderPrecisionSpoofedValues = { 
+    rangeMin: 127, 
+    rangeMax: 127, 
+    precision: 23 };
+
+
+  var FloatIntPrecisionValues = {};
 
   
   var config = {
@@ -89,15 +110,10 @@ var inject = function () {
           const bufferData = target.prototype.bufferData;
           
           Object.defineProperty(target.prototype, "bufferData", {
+            
             "value": function () {
-              
 
-
-              var index = Math.floor(config.random.value() * 10);
-              var noise = 0.1 * config.random.value() * arguments[1][index];
-              arguments[1][index] = arguments[1][index] + noise;
-              console.log("Here we are applying webgl fingerprint");
-
+              console.log("Here we are applying webgl fingerprint --- IMAGE HASH");
 
               return bufferData.apply(this, arguments);
             }
@@ -105,6 +121,43 @@ var inject = function () {
           });
         },
 
+        /*"shaderPrecisionFormat" : function(target) {
+          const WebGLShaderPrecisionFormat = target.prototype;
+          console.log("Here " + WebGLShaderPrecisionFormat["get precision"]);
+          Object.defineProperty(target.prototype, "get precision", {
+            
+            "value": function() {
+                
+                console.log("Here we are checking the precision values " + arguments[0] + arguments[1]);
+                //eturn WebGLShaderPrecisionFormat.apply(this, arguments);
+                return WebGLShaderPrecisionFormat.apply(this,arguments);
+            }
+
+          });
+
+        },*/
+
+        "getShaderPrecisionFormat" : function (target) {
+
+          const getShaderPrecisionFormat = target.prototype;
+          Object.defineProperty(target.prototype, "getShaderPrecisionFormat", {
+
+            "value": function() {
+
+              //console.log(arguments[0] + " " + arguments[1] + ' tfw getShaderPrecisionFormat ');
+
+              //console.log(getShaderPrecisionFormat.call(this, arguments));
+               
+              //return getShaderPrecisionFormat.apply(this, arguments);
+
+
+              return ShaderPrecisionSpoofedValues;
+
+            }
+
+          });
+
+        },
 
         "parameter": function (target) {
           
@@ -113,15 +166,14 @@ var inject = function () {
           Object.defineProperty(target.prototype, "getParameter", {
             
             "value": function () {
-        
-              
-              if (WebGLSpoofedValues [arguments [0]] != undefined ){
+
+              if ( WebGLSpoofedValues[arguments [0]] != undefined ){
                 
                   console.log(WebGLSpoofedValues[arguments[0]]);
                   return WebGLSpoofedValues[arguments[0]];
 
               }
-
+ 
               return getParameter.apply(this, arguments);
 
             }
@@ -139,10 +191,22 @@ var inject = function () {
   config.spoof.webgl.buffer(WebGL2RenderingContext);
 
 
-  //SPOOFING THE CANVAS VALUES
+  //SPOOFING THE GETSHADERPRECISIONVALUES
+  config.spoof.webgl.getShaderPrecisionFormat(WebGLRenderingContext);
+  config.spoof.webgl.getShaderPrecisionFormat(WebGL2RenderingContext);
+
+
+  //SPOOFING SHADER PRECISION FORMAT
+  //config.spoof.webgl.shaderPrecisionFormat(WebGLShaderPrecisionFormat);
+  
+
+  //SPOOFING THE WEBGL PARAMETER VALUES
   config.spoof.webgl.parameter(WebGLRenderingContext);
   config.spoof.webgl.parameter(WebGL2RenderingContext);
   
+
+
+
   document.documentElement.dataset.wgscriptallow = true;
 
 };
