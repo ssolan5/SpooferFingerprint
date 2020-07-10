@@ -121,7 +121,6 @@ var inject = function () {
               var float32array = new Float32Array([1, 8192]);
               
               
-              return "MREH";
 
 
               if (WebGLSpoofedValues [arguments [0]] != undefined ){
@@ -142,7 +141,7 @@ var inject = function () {
 
 
 
-              //return getParameter.apply(this, arguments);
+              return getParameter.apply(this, arguments);
 
             }
 
