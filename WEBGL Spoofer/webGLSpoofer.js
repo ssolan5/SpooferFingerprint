@@ -1,3 +1,54 @@
+// an Example of a valid fingerprint taken from one of my devices. 
+var samplefingerprint = {
+  7936:"WebKit",
+  7937:"WebKit WebGL",
+  7938:"WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  37445:"Google Inc.",
+  37446:"Google SwiftShader",
+  35724:"WebGL GLSL ES 3.00 (OpenGL ES GLSL ES 3.0 Chromium)",
+  34921:"32",
+  36347:"256",
+  35660:"16",
+  36348:"32",
+  35658:"1036",
+  35371:"12",
+  37154:"64",
+  35659:"128",
+  35978:"64",
+  35979:"4",
+  35968:"64",
+  33902:"[1, 1]",
+  33901:"[0.125, 8192]",
+  36349:"224",
+  34930:"16",
+  34852:"8",
+  36063:"8",
+  36183:"4",
+  3410:"8",
+  3411:"8",
+  3412:"8",
+  3413:"8",
+  3414:"24",
+  3415:"8",
+  34024:"8192",
+  3386:"[8192, 8192]",
+  3379:"8192",
+  34076:"8192",
+  35661:"32",
+  34047:"16",
+  32883:"8192",
+  35071:"8192",
+  34045:"12",
+  35375:"24",
+  35376:"16384",
+  35380:"4",
+  35374:"24",
+  35377:"50188",
+  35379:"50060"
+};
+
+
+
 var inject = function () {
 
   var WebGLSpoofedValues = {
@@ -27,12 +78,14 @@ var inject = function () {
     "35379" : "MREH", //MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS
     "35376" : "MREH", //MAX_UNIFORM_BLOCK_SIZE
     "35375" : "MREH", //MAX_UNIFORM_BUFFER_BINDINGS
+    "35380" : "MREH", //UNIFORM_BUFFER_OFFSET_ALIGNMENT
     "35374" : "MREH", //MAX_COMBINED_UNIFORM_BLOCKS    
     "35373" : "MREH", //MAX_FRAGMENT_UNIFORM_BLOCKS
     "35371" : "MREH", //MAX_VERTEX_UNIFORM_BLOCKS
     "35071" : "MREH", //MAX_ARRAY_TEXTURE_LAYERS
     "34930" : "MREH", //MAX_COMBINED_TEXTURE_IMAGE_UNITS
     "34852" : "MREH", //MAX_DRAW_BUFFERS
+    "36183" : "MREH", //MAX_SAMPLES
     "36063" : "MREH", //MAX_COLOR_ATTACHMENTS
     "34921" : "MREH", //MAX_VERTEX_ATTRIBS
     "34076" : "MREH", //MAX_CUBE_MAP_TEXTURE_SIZE
@@ -45,7 +98,12 @@ var inject = function () {
     "32883" : "MREH", //MAX_3D_TEXTURE_SIZE
     "3386"  : "MREH", //MAX_VIEWPORT_DIMS
     "3379"  : "MREH", //MAX_TEXTURE_SIZE
-    "2928"  : "MREH"  //DEPTH_RANGE
+    "2928"  : "MREH", //DEPTH_RANGE
+
+
+    "35077" : "MREH", //MAX_PROGRAM_TEXEL_OFFSET
+    "35076" : "MREH", //MIN_PROGRAM_TEXEL_OFFSET
+    "34047" : "MREH" //MAX_TEXTURE_MAX_ANISOTROPY_EXT
 
     /*  FRAMEBUFFER: 36160
         FRAMEBUFFER_ATTACHMENT_OBJECT_NAME: 36049
