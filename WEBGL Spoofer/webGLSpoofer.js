@@ -214,7 +214,6 @@ var inject = function () {
            const getAttribLocation = target.prototype.getAttribLocation;
            Object.defineProperty(target.prototype, "getAttribLocation", {
               "value": function() {
-
                 //depending upon arguments[0]
                 return WebGLAttribLocation;
                 //return getAttribLocation.apply(this, arguments);
@@ -226,7 +225,6 @@ var inject = function () {
            const getUniformLocation = target.prototype.getUniformLocation;
            Object.defineProperty(target.prototype, "getUniformLocation", {
               "value": function() {
-
                  //depending upon arguments[0]
                 return WebGLUniformLocation;
                 //return getUniformLocation.apply(this, arguments);
