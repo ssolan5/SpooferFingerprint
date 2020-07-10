@@ -101,6 +101,11 @@ var inject = function () {
     "2928"  : "MREH", //DEPTH_RANGE
 
 
+    "256"   : "MREH", //DEPTH_BUFFER_BIT
+    "16384" : "MREH", //COLOR_BUFFER_BIT
+    "2929"  : "MREH", //DEPTH_TEST
+
+
     "35077" : "MREH", //MAX_PROGRAM_TEXEL_OFFSET
     "35076" : "MREH", //MIN_PROGRAM_TEXEL_OFFSET
     "34047" : "MREH" //MAX_TEXTURE_MAX_ANISOTROPY_EXT
@@ -124,9 +129,8 @@ var inject = function () {
   var ShaderPrecisionSpoofedValues = { 
     rangeMin: 127, 
     rangeMax: 127, 
-    precision: 23 };
-
-  
+    precision: 23 
+  };
 
   //"HIGH_FLOAT"
   //"HIGH_INT"
@@ -151,6 +155,19 @@ var inject = function () {
 
   var WebGLSupportedExtensionsSpoofed =["ANGLE_instanced_arrays", "EXT_blend_minmax"];
   
+  var WebGLDebugRendererInfoSpoofed = {
+    UNMASKED_RENDERER_WEBGL: 37446,
+    UNMASKED_VENDOR_WEBGL: 37445
+  };
+
+  var WebGLAttribLocation = {
+
+  };
+
+  var WebGLUniformLocation = {
+
+  };
+
   var config = {
 
     "random": {
@@ -181,6 +198,7 @@ var inject = function () {
     },
 
     "spoof": {
+
       "webgl": {       
         "buffer": function (target) {        
           const bufferData = target.prototype.bufferData;       
@@ -192,7 +210,48 @@ var inject = function () {
 
           });
         },
+        "getAttribLocation": function(target) {
+           const getAttribLocation = target.prototype.getAttribLocation;
+           Object.defineProperty(target.prototype, "getAttribLocation", {
+              "value": function() {
 
+                //depending upon arguments[0]
+                return WebGLAttribLocation;
+                //return getAttribLocation.apply(this, arguments);
+              }
+           });
+        
+        },
+        "getUniformLocation": function(target) {
+           const getUniformLocation = target.prototype.getUniformLocation;
+           Object.defineProperty(target.prototype, "getUniformLocation", {
+              "value": function() {
+
+                 //depending upon arguments[0]
+                return WebGLUniformLocation;
+                //return getUniformLocation.apply(this, arguments);
+              }
+           });
+        
+        },
+        "getExtensions": function(target) {
+           const getExtensions = target.prototype.getExtensions;
+           Object.defineProperty(target.prototype, "getExtensions", {
+              "value": function() {
+
+                //EXT_texture_filter_anisotropic
+                //WEBKIT_EXT_texture_filter_anisotropic
+                //MOZ_EXT_texture_filter_anisotropic
+
+                if( arguments[0] === 'WEBGL_debug_renderer_info'){
+                  return WebGLSupportedExtensionsSpoofed;
+                }
+                
+                return getExtensions.apply(this, arguments);
+              }
+           });
+        
+        },
         "getSupportedExtensions": function(target) {
            const getSupportedExtensions = target.prototype.getSupportedExtensions;
            Object.defineProperty(target.prototype, "getSupportedExtensions", {
@@ -293,10 +352,17 @@ var inject = function () {
   config.spoof.webgl.parameter(WebGLRenderingContext);
   config.spoof.webgl.parameter(WebGL2RenderingContext);
   
+  //SPOOFING THE WEBGL GETATTRIBLOCATION
+  config.spoof.webgl.getAttribLocation(WebGLRenderingContext);
+  config.spoof.webgl.getAttribLocation(WebGL2RenderingContext);
+  
 
   //SPOOFING WEBGL EXTENSIONS
   config.spoof.webgl.getSupportedExtensions(WebGLRenderingContext);
   config.spoof.webgl.getSupportedExtensions(WebGL2RenderingContext);
+  config.spoof.webgl.getExtensions(WebGLRenderingContext);
+  config.spoof.webgl.getExtensions(WebGL2RenderingContext);
+  
   
   //SPOOFING WEBGL CONTEXT ATTRIBUTES
   config.spoof.webgl.getContextAttributes(WebGLRenderingContext);
