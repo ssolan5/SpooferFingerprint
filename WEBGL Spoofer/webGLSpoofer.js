@@ -78,6 +78,18 @@ var inject = function () {
     precision: 6
   };
 
+  var WebGLContextAttributesSpoofed = {
+    alpha: false,
+    antialias: false,
+    depth: false,
+    desynchronized: false,
+    failIfMajorPerformanceCaveat: true,
+    powerPreference: "MREH",
+    premultipliedAlpha: false,
+    preserveDrawingBuffer: false,
+    stencil: true,
+    xrCompatible: true
+  }
 
   var WebGLSupportedExtensionsSpoofed =["ANGLE_instanced_arrays", "EXT_blend_minmax"];
   
@@ -109,6 +121,7 @@ var inject = function () {
         return result;
       }
     },
+
     "spoof": {
       "webgl": {       
         "buffer": function (target) {        
@@ -133,6 +146,19 @@ var inject = function () {
         
         },
 
+        "getContextAttributes": function(target) {
+           const getContextAttributes = target.prototype;
+
+           Object.defineProperty(target.prototype, "getContextAttributes", {
+              "value": function() {
+                return WebGLContextAttributesSpoofed;
+                //return getSupportedExtensions.apply(this, arguments);
+              }
+           });
+        
+        },
+        
+
         /*"shaderPrecisionFormat" : function(target) {
           const WebGLShaderPrecisionFormat = target.prototype;
           console.log("Here " + WebGLShaderPrecisionFormat["get precision"]);
@@ -154,10 +180,6 @@ var inject = function () {
           Object.defineProperty(target.prototype, "getShaderPrecisionFormat", {
 
             "value": function() {
-
-              //console.log(arguments[0] + " " + arguments[1] + ' tfw getShaderPrecisionFormat ');
-
-
               // 36338: "HIGH_FLOAT"
               // 36341: "HIGH_INT"
               // 36337: "MEDIUM_FLOAT"
@@ -218,6 +240,9 @@ var inject = function () {
   config.spoof.webgl.getSupportedExtensions(WebGLRenderingContext);
   config.spoof.webgl.getSupportedExtensions(WebGL2RenderingContext);
   
+  //SPOOFING WEBGL CONTEXT ATTRIBUTES
+  config.spoof.webgl.getContextAttributes(WebGLRenderingContext);
+  config.spoof.webgl.getContextAttributes(WebGL2RenderingContext);
 
   document.documentElement.dataset.wgscriptallow = true;
 
