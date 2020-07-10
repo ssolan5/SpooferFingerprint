@@ -96,7 +96,6 @@ var inject = function () {
               var index = Math.floor(config.random.value() * 10);
               var noise = 0.1 * config.random.value() * arguments[1][index];
               arguments[1][index] = arguments[1][index] + noise;
-              //window.top.postMessage("webgl-fingerprint-defender-alert", '*');
               console.log("Here we are applying webgl fingerprint");
 
 
@@ -114,32 +113,14 @@ var inject = function () {
           Object.defineProperty(target.prototype, "getParameter", {
             
             "value": function () {
-
-
-
-
-              var float32array = new Float32Array([1, 8192]);
+        
               
-              
-
-
               if (WebGLSpoofedValues [arguments [0]] != undefined ){
                 
                   console.log(WebGLSpoofedValues[arguments[0]]);
                   return WebGLSpoofedValues[arguments[0]];
 
               }
-
-              
-
-              
-              
-              
-
-
-             
-
-
 
               return getParameter.apply(this, arguments);
 
