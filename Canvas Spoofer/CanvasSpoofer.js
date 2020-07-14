@@ -6,8 +6,8 @@ var inject = function() {
         const oldcanvas = HTMLCanvasElement.prototype[name];
         Object.defineProperty(HTMLCanvasElement.prototype, name, {
             "value": function() {
-                debugger;
-                console.trace();
+                //debugger;
+                //console.trace();
                 
                 var width = this.width,
                     height = this.height,
