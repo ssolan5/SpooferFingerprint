@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["CanvasSpoofer.js"],
+      "js": ["CanvasSpoofer.js,CanvasDetection.js"],
       "run_at": "document_start"
     }
   ]
