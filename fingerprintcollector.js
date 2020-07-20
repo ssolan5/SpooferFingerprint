@@ -1,6 +1,10 @@
  (function() {  
 
-                $('<div id="fonts_utf_testbox"></div>').appendTo("html");
+                //$('<div id="fonts_utf_testbox"></div>').appendTo("body");
+                element = document.createElement('div');
+                element.setAttribute("id", "fonts_utf_testbox");
+                document.body.appendChild(document.getElementById("fonts_utf_testbox"));
+
                 var M = ["default", "sans-serif", "serif", "monospace", "cursive", "fantasy"]
               , B = [8377, 9601, 8378, 42813, 65533, 8376, 1478, 7838, 2431, 61443, 7386, 6109, 9134, 3330, 2946, 4442, 9253, 12334, 43056, 11014, 8676, 8381, 11387, 8368, 64494, 63504, 65535, 127, 4256, 120720, 1792, 6480, 12437, 21293, 1564, 8419, 65529, 536, 1423, 2276, 2483, 7248, 9753];
                 function P(o) {
